@@ -1,0 +1,25 @@
+{
+  "name": "brandrecognitionassistant",
+  "version": "1.0.0",
+  "description": "An application to make it easy to generate your own logo!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pilotguide9897/BrandRecognitionAssistant.git"
+  },
+  "keywords": [
+    "Logo"
+  ],
+  "author": "Jared Green",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pilotguide9897/BrandRecognitionAssistant/issues"
+  },
+  "homepage": "https://github.com/Pilotguide9897/BrandRecognitionAssistant#readme",
+  "dependencies": {
+    "inquirer": "^9.1.4"
+  }
+}
