@@ -26,28 +26,28 @@ const questions = [
             }
         }
      },
+     {
+        type: 'autocomplete',
+        name: 'textColor',
+        message: 'Enter the color for the text. You may provide either a colour name keyword or a valid hexadecimal value:',
+        source: (answers,input) => {
+          const fuzzyResult = fuzzy.filter(input || '', myColours, options);
+          const results = fuzzyResult.map((el) => el.original);
+          return results;
+      },
+      validate: function(value) {
+        if (this.answers.shapeColorType === 'Color keyword') {
+          return (value.match(/^[a-zA-Z]+$/) ? true : 'Please enter a valid color keyword');
+        } else {
+          return (value.match(/^#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})$/) ? true : 'Please enter a valid hexadecimal color number');
+          }
+        }
+      },
     {
         type: 'list',
         message: 'Please choose a shape for your logo.',
         name: 'logoShape',
         choices: ['Circle', 'Triangle', 'Square']
-    },
-    {
-      type: 'autocomplete',
-      name: 'textColor',
-      message: 'Enter the color for the text. You may provide either a colour name keyword or a valid hexadecimal value:',
-      source: (answers,input) => {
-        const fuzzyResult = fuzzy.filter(input || '', myColours, options);
-        const results = fuzzyResult.map((el) => el.original);
-        return results;
-    },
-    validate: function(value) {
-      if (this.answers.shapeColorType === 'Color keyword') {
-        return (value.match(/^[a-zA-Z]+$/) ? true : 'Please enter a valid color keyword');
-      } else {
-        return (value.match(/^#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})$/) ? true : 'Please enter a valid hexadecimal color number');
-        }
-      }
     },
     {
         type: 'autocomplete',
@@ -65,7 +65,7 @@ const questions = [
             return (value.match(/^#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})$/) ? true : 'Please enter a valid hexadecimal color number');
           }
         }
-      }
+    }
   ];
   
   inquirer.prompt(questions)
@@ -80,7 +80,7 @@ const questions = [
 
     }
 
-    fs.writeFile('logo.svg', ,(err) => { // Need to include the data to take in.
-        if (err) throw new Error('An error occurred writing your file.');
-        console.log('Generated logo.svg');
-    });
+    // fs.writeFile('logo.svg', ,(err) => { // Need to include the data to take in.
+    //     if (err) throw new Error('An error occurred writing your file.');
+    //     console.log('Generated logo.svg');
+    // });
