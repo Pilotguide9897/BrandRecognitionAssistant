@@ -1,23 +1,28 @@
-class Shapes {
-    constructor(){
-
-    }
-}
-
-class Square {
-    constructor(){
+// class Shapes {
+//     constructor(colour){
+//         this.colour = colour;
         
-    }
-}
+//     }
+//     render(){
 
-class Circle {
-    constructor(){
-        
-    }
-}
+//     }
+// }
 
-class Triangle {
-    constructor(){
+// class Square extends Shapes {
+//     constructor(){
+//         super();
+//         this.
+//     }
+// }
 
-    }
-}
+// class Circle extends Shapes {
+//     constructor(){
+//         super();
+//     }
+// }
+
+// class Triangle extends Shapes {
+//     constructor(){
+//         super();
+//     }
+// }
