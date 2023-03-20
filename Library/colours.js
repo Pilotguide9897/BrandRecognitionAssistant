@@ -1,4 +1,4 @@
-const colors = {
+const colours = {
 "Absolute Zero": "#0048BA",
 "Acid green": "#B0BF1A",
 "Aero": "#7CB9E8",
@@ -879,4 +879,8 @@ const colors = {
 "YInMn Blue": "#2e5090",
 "Zaffre": "#0014A8",
 "Zomp": "#39A78E"
+};
+
+module.exports{
+    colours
 };
