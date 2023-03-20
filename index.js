@@ -10,23 +10,23 @@ const fs = require('fs');
 // const colourOptions = {
 //     extract: (el) => Object.keys(el)
 // };
-const myPrompt = async () => {
-const questions = [    
-    {
-        type: 'input',
-        message: 'Enter up to three characters to include in your logo:',
-         name: 'logoChars',
-         validate: function (input){
-             if (input.length > 3) {
-                 return "Please enter no more than three characters!";
-             } else if (input === '') {
-                    return "Please include at least one valid character!";
-            } else {
-                return true;
-            }
-        }
-     }
-    ]
+// const myPrompt = async () => {
+// const questions = [    
+//     {
+//         type: 'input',
+//         message: 'Enter up to three characters to include in your logo:',
+//          name: 'logoChars',
+//          validate: function (input){
+//              if (input.length > 3) {
+//                  return "Please enter no more than three characters!";
+//              } else if (input === '') {
+//                     return "Please include at least one valid character!";
+//             } else {
+//                 return true;
+//             }
+//         }
+//      }
+//     ]
   //    {
   //       type: 'autocomplete',
   //       name: 'textColor',
@@ -68,13 +68,30 @@ const questions = [
   //       }
   //   }
   // ];
+// return questions;
+//   //return inquirer.prompt(questions);
+// };
 
-  return inquirer.prompt(questions);
-};
+//   module.exports = myPrompt;
 
-  module.exports = questions;
-
-
+const questions = [    
+  {
+      type: 'input',
+      message: 'Enter up to three characters to include in your logo:',
+       name: 'logoChars',
+       validate: function (input){
+           if (input.length > 3) {
+              return "Please enter no more than three characters!";
+           } else if (input === '') {
+              return "Please include at least one valid character!";
+          } else if (input === ' ' || input === '  ' || input === '   ') {
+              return "Please include at least one valid character!";
+          } else {
+              return true;
+          }
+      }
+   }
+  ]
   
   inquirer.prompt(questions)
     .then(answers => {
