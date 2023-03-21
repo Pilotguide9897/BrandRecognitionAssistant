@@ -91,7 +91,7 @@ const questions = [
       const svgLogo = `${svgHeader}${shapeSvg}${svgText}${svgFooter}`;
 
         try {
-          await fs.writeFile(logo.svg, logoSvg);
+          await fs.writeFile(logo.svg, svgLogo);
           console.log('Generated logo.svg');
         } catch {
           console.error('Unable to write logo', error);
