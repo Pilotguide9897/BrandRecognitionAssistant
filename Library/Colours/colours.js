@@ -881,6 +881,4 @@ const colours = {
 "Zomp": "#39A78E"
 };
 
-module.exports{
-    colours
-};
+module.exports = colours;
