@@ -83,8 +83,20 @@ const questions = [
     });
 
     function generateLogo(logoChars, textColour, chosenShape){
+      const svgHeader = `<?xml version="1.0 encoding='UTF-8?> <svg width="300" height="200" version='"1.1" xmlns="http://www.w3.org/2000/svg">`;
+      const svgFooter = `</svg>`;
+      const svgText = `<text x="50% y="50% text-anchor="middle" fill="${textColour}">${logoChars}</text>`;
+      const shapeSvg = chosenShape.render();
+      const svgLogo = `${svgHeader}${shapeSvg}${svgText}${svgFooter}`;
 
-    fs.writeFile('logo.svg',logoSVG, (err) => { 
+      async function printLogoToFile (svgLogo){
+        try {
+
+
+
+
+        }
+    await fs.writeFile('logo.svg',svgLogo, (err) => { 
         if (err) throw new Error('An error occurred writing your file.');
         return;
     }
