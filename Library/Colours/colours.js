@@ -175,7 +175,7 @@ const colours = {
 "Dark jungle green": "#1A2421",
 "Dark khaki": "#BDB76B",
 "Dark lava": "#483C32",
-"Dark liver (horses)": "#534B4F"
+"Dark liver (horses)": "#534B4F",
 "Dark magenta": "#8B008B",
 "Dark olive green": "#556B2F",
 "Dark orange": "#FF8C00",
@@ -751,7 +751,7 @@ const colours = {
 "Spring green": "#00FF7F",
 "Spring green (Crayola)": "#ECEBBD",
 "Star command blue": "#007BB8",
-"Steel blue": "#4682B,
+"Steel blue": "#4682B",
 "Steel pink": "#CC3366",
 "Stil de grain yellow": "#FADA5E",
 "Straw": "#E4D96F",
