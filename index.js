@@ -42,7 +42,7 @@ const questions = [
         type: 'list',
         message: 'Please select a font style:',
         name: 'fontFamily',
-        choices: ['Arial', 'Verdana', 'Times New Roman', 'Helvetica', 'Georgia']
+        choices: ['Arial', 'Verdana', 'Times New Roman', 'Helvetica', 'Georgia', 'Courier New', 'Trebuchet MS', 'Impact', "Comic Sans MS"]
      },
      {
       type: 'list',
@@ -113,7 +113,7 @@ const questions = [
    async function generateLogo(logoChars, fontSize, fontFamily, fontWeight, lineStyling, textColour, chosenShape){
       const svgHeader = `<?xml version="1.0" encoding="UTF-8"?> <svg width="300" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">`;
       const svgFooter = `</svg>`;
-      const svgText = `<text x="50%" y="50%" font-size="${fontSize}"; font-family="${fontFamily}" style="text-decoration: ${lineStyling}" font-weight="${fontWeight}" text-anchor="middle" fill="${textColour}">${logoChars}</text>`;
+      const svgText = `<text x="50%" y="50%" dy="0.20em" font-size="${fontSize}"; font-family="${fontFamily}" style="text-decoration: ${lineStyling}" font-weight="${fontWeight}" text-anchor="middle" fill="${textColour}">${logoChars}</text>`;
       const shapeSvg = chosenShape.render();
       const svgLogo = `${svgHeader}${shapeSvg}${svgText}${svgFooter}`;
 
