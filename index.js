@@ -77,9 +77,9 @@ const questions = [
     .then(answers => {
       const {logoChars, textColour, logoShape, shapeColour} = answers;
       console.log (logoChars, textColour, logoShape, shapeColour);
-      const chosenShape = logoShape === 'triangle'
+      const chosenShape = logoShape === 'Triangle'
       ? new Triangle(shapeColour)
-      : logoShape === 'circle'
+      : logoShape === 'Circle'
         ? new Circle(shapeColour)
         : new Square(shapeColour);
 
