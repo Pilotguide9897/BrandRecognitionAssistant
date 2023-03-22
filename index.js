@@ -60,21 +60,26 @@ const questions = [
         type: 'list',
         message: 'Please select a line styling:',
         name: 'lineStyling',
-        choices: ['none', 'underline', 'overline', 'lighter', 'line-throug', ]
+        choices: ['none', 'underline', 'overline', 'lighter', 'line-through', ]
       },
-     {
-      type: 'autocomplete',
-      name: 'textColour',
-      message: 'Enter the text colour (colour keyword or hexadecimal number):',
-      source: (input) => searchColours(input, colours),
-      validate: function (input) {
-        const hexColorRegex = /^#(?:[0-9a-fA-F]{3}){1,2}$/;
-        if (!colours.hasOwnProperty(input) && !hexColorRegex.test(input)) {
-          return 'Please enter a valid color keyword or hexadecimal number.';
-        }
-        return true;
-      },
-    },
+      {
+        type: 'autocomplete',
+        name: 'textColour',
+        message: 'Enter the text colour (colour keyword or hexadecimal number):',
+        suggest: function(input){
+          const filteredColours = colours.filter(
+            colour => colour.toLowerCase().indexOf(input.toLowerCase()) !== -1
+          );
+           return filteredColours;
+        },
+        validate: function (input) {
+          const hexColorRegex = /^#(?:[0-9a-fA-F]{3}){1,2}$/;
+          if (!colours.hasOwnProperty(input.toLowerCase()) && !hexColorRegex.test(input)) {
+            return 'Please enter a valid color keyword or hexadecimal number.';
+          }
+          return true;
+        },
+      },      
     {
         type: 'list',
         message: 'Please choose a shape for your logo.',
@@ -85,11 +90,16 @@ const questions = [
       type: 'autocomplete',
       name: 'shapeColour',
       message: 'Enter the shape colour (colour keyword or hexadecimal number):',
-      source: (input) => searchColours(input, colours),
+      suggest: function(input){
+        const filteredColours = colours.filter(
+          colour => colour.toLowerCase().indexOf(input.toLowerCase()) !== -1
+        );
+         return filteredColours;
+      },
       validate: function (input) {
         const hexColorRegex = /^#(?:[0-9a-fA-F]{3}){1,2}$/;
-        if (!colours.hasOwnProperty(input) && !hexColorRegex.test(input)) {
-          return 'Please enter a valid colour keyword or hexadecimal number.';
+        if (!colours.hasOwnProperty(input.toLowerCase()) && !hexColorRegex.test(input)) {
+          return 'Please enter a valid color keyword or hexadecimal number.';
         }
         return true;
       },
