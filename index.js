@@ -8,19 +8,21 @@ async function main () {
   const { error } = require('console');
 
   const inquirerAutocompletePrompt = (await import('inquirer-autocomplete-prompt')).default;
-  const inquirerFuzzyPath = (await import('inquirer-fuzzy-path')).default;
+  // inquirer.registerPrompt('autocomplete', inquirerAutocompletePrompt); // For some reason this code halts the execution of the rest of my prompts...
 
-  
-
-const searchColours = (input) => {
+const searchColours = (input, colours) => {
   input = input || '';
   const colourList = Object.keys(colours);
+  console.log(colourList);
+
   return new Promise ((resolve) => {
-    resolve(colourList.filter((colours) => {
-      return colours.toLowerCase().indexOf(input.toLowercase()) !== -1;
-    }));
+    const filteredColors = colourList.filter((color) => {
+      return color.toLowerCase().indexOf(input.toLowerCase()) !== -1;
+    });
+    resolve(filteredColors.length > 0 ? filteredColors : ['No matching colors found']);
   });
 };
+
 
 const questions = [    
     {
@@ -30,7 +32,7 @@ const questions = [
          validate: function (input){
              if (input.length > 3) {
                  return "Please enter no more than three characters!";
-             } else if (input === '') {
+             } else if (input.length === 0 || input === " " || input === "  " || input === "   ") {
                     return "Please include at least one valid character!";
             } else {
                 return true;
@@ -41,7 +43,7 @@ const questions = [
       type: 'autocomplete',
       name: 'textColour',
       message: 'Enter the text colour (colour keyword or hexadecimal number):',
-      source: (answers, input) => searchColours(input),
+      source: (input) => searchColours(input, colours),
       validate: function (input) {
         const hexColorRegex = /^#(?:[0-9a-fA-F]{3}){1,2}$/;
         if (!colours.hasOwnProperty(input) && !hexColorRegex.test(input)) {
@@ -60,7 +62,7 @@ const questions = [
       type: 'autocomplete',
       name: 'shapeColour',
       message: 'Enter the shape colour (colour keyword or hexadecimal number):',
-      source: (answers, input) => searchColours(input),
+      source: (input) => searchColours(input, colours),
       validate: function (input) {
         const hexColorRegex = /^#(?:[0-9a-fA-F]{3}){1,2}$/;
         if (!colours.hasOwnProperty(input) && !hexColorRegex.test(input)) {
@@ -71,12 +73,13 @@ const questions = [
     },
   ];
   
-  inquirer.prompt(questions)
+  inquirer.prompt(questions) // Something is going on here that stops any shape but the square from being selected.
     .then(answers => {
-      const {logoChars, textColour, shape, shapeColour} = answers;
-      const chosenShape = shape === 'triangle'
+      const {logoChars, textColour, logoShape, shapeColour} = answers;
+      console.log (logoChars, textColour, logoShape, shapeColour);
+      const chosenShape = logoShape === 'triangle'
       ? new Triangle(shapeColour)
-      : shape === 'circle'
+      : logoShape === 'circle'
         ? new Circle(shapeColour)
         : new Square(shapeColour);
 
@@ -84,14 +87,16 @@ const questions = [
     });
 
    async function generateLogo(logoChars, textColour, chosenShape){
-      const svgHeader = `<?xml version="1.0 encoding='UTF-8?> <svg width="300" height="200" version='"1.1" xmlns="http://www.w3.org/2000/svg">`;
+      const svgHeader = `<?xml version="1.0" encoding="UTF-8"?> <svg width="300" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">`;
       const svgFooter = `</svg>`;
       const svgText = `<text x="50%" y="50%" text-anchor="middle" fill="${textColour}">${logoChars}</text>`;
       const shapeSvg = chosenShape.render();
       const svgLogo = `${svgHeader}${shapeSvg}${svgText}${svgFooter}`;
 
+      console.log(svgLogo);
+
         try {
-          await fs.writeFile(logo.svg, svgLogo);
+          await fs.writeFile("./Examples/logo.svg", svgLogo);
           console.log('Generated logo.svg');
         } catch {
           console.error('Unable to write logo', error);
