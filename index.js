@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
+const fs = require('fs').promises;
 const inquirerAutocompletePrompt = require('inquirer-autocomplete-prompt');
 const inquirerFuzzyPath = require('inquirer-fuzzy-path');
 const colours = require('./Library/Colours/colours');
@@ -7,6 +7,7 @@ const generateLogo = require('./generateLogo');
 const Triangle = require('./Library/Shapes/triangle');
 const Circle = require('./Library/Shapes/circle');
 const Square = require('./Library/Shapes/square');
+const { error } = require('console');
 
 inquirer.registerPrompt('autocomplete', inquirerAutocompletePrompt);
 inquirer.registerPrompt("fuzzypath", inquirerFuzzyPath);
@@ -82,24 +83,18 @@ const questions = [
         generateLogo(logoChars, textColour, chosenShape);
     });
 
-    function generateLogo(logoChars, textColour, chosenShape){
+   async function generateLogo(logoChars, textColour, chosenShape){
       const svgHeader = `<?xml version="1.0 encoding='UTF-8?> <svg width="300" height="200" version='"1.1" xmlns="http://www.w3.org/2000/svg">`;
       const svgFooter = `</svg>`;
       const svgText = `<text x="50% y="50% text-anchor="middle" fill="${textColour}">${logoChars}</text>`;
       const shapeSvg = chosenShape.render();
       const svgLogo = `${svgHeader}${shapeSvg}${svgText}${svgFooter}`;
 
-      async function printLogoToFile (svgLogo){
         try {
-
-
-
-
+          await fs.writeFile(logo.svg, svgLogo);
+          console.log('Generated logo.svg');
+        } catch {
+          console.error('Unable to write logo', error);
         }
-    await fs.writeFile('logo.svg',svgLogo, (err) => { 
-        if (err) throw new Error('An error occurred writing your file.');
-        return;
-    }
-        console.log('Generated logo.svg');
-    });
-  }
+      }
+
