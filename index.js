@@ -1,16 +1,16 @@
-const inquirer = require('inquirer');
-const fs = require('fs').promises;
-const inquirerAutocompletePrompt = require('inquirer-autocomplete-prompt');
-const inquirerFuzzyPath = require('inquirer-fuzzy-path');
-const colours = require('./Library/Colours/colours');
-const generateLogo = require('./generateLogo');
-const Triangle = require('./Library/Shapes/triangle');
-const Circle = require('./Library/Shapes/circle');
-const Square = require('./Library/Shapes/square');
-const { error } = require('console');
+import('inquirer').then(({ default: inquirer }) => {
+async function main () {
+  const fs = require('fs').promises;
+  const colours = require('./Library/Colours/colours');
+  const Triangle = require('./Library/Shapes/triangle');
+  const Circle = require('./Library/Shapes/circle');
+  const Square = require('./Library/Shapes/square');
+  const { error } = require('console');
 
-inquirer.registerPrompt('autocomplete', inquirerAutocompletePrompt);
-inquirer.registerPrompt("fuzzypath", inquirerFuzzyPath);
+  const inquirerAutocompletePrompt = (await import('inquirer-autocomplete-prompt')).default;
+  const inquirerFuzzyPath = (await import('inquirer-fuzzy-path')).default;
+
+  
 
 const searchColours = (input) => {
   input = input || '';
@@ -40,8 +40,8 @@ const questions = [
      {
       type: 'autocomplete',
       name: 'textColour',
-      message: 'Enter the text color (color keyword or hexadecimal number):',
-      source: (answers, input) => searchColors(input),
+      message: 'Enter the text colour (colour keyword or hexadecimal number):',
+      source: (answers, input) => searchColours(input),
       validate: function (input) {
         const hexColorRegex = /^#(?:[0-9a-fA-F]{3}){1,2}$/;
         if (!colours.hasOwnProperty(input) && !hexColorRegex.test(input)) {
@@ -59,12 +59,12 @@ const questions = [
     {
       type: 'autocomplete',
       name: 'shapeColour',
-      message: 'Enter the shape color (color keyword or hexadecimal number):',
-      source: (answers, input) => searchColors(input),
+      message: 'Enter the shape colour (colour keyword or hexadecimal number):',
+      source: (answers, input) => searchColours(input),
       validate: function (input) {
         const hexColorRegex = /^#(?:[0-9a-fA-F]{3}){1,2}$/;
         if (!colours.hasOwnProperty(input) && !hexColorRegex.test(input)) {
-          return 'Please enter a valid color keyword or hexadecimal number.';
+          return 'Please enter a valid colour keyword or hexadecimal number.';
         }
         return true;
       },
@@ -86,7 +86,7 @@ const questions = [
    async function generateLogo(logoChars, textColour, chosenShape){
       const svgHeader = `<?xml version="1.0 encoding='UTF-8?> <svg width="300" height="200" version='"1.1" xmlns="http://www.w3.org/2000/svg">`;
       const svgFooter = `</svg>`;
-      const svgText = `<text x="50% y="50% text-anchor="middle" fill="${textColour}">${logoChars}</text>`;
+      const svgText = `<text x="50%" y="50%" text-anchor="middle" fill="${textColour}">${logoChars}</text>`;
       const shapeSvg = chosenShape.render();
       const svgLogo = `${svgHeader}${shapeSvg}${svgText}${svgFooter}`;
 
@@ -97,4 +97,10 @@ const questions = [
           console.error('Unable to write logo', error);
         }
       }
+    }
+
+main();    
+
+});
+
 
