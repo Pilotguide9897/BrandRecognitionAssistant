@@ -6,7 +6,7 @@ A simple and intuitive command-line application that takes in user input to gene
 ## Description
 This application is a simple command-line logo generator that allows users to create a logo with customizable text, text color, shape, and shape color. It provides an interactive experience using inquirer for gathering user inputs, with the added functionality of autocompletion and fuzzy search for color selection.
 
-A video illustrating this application's functionality may be viewed [here]().
+A video illustrating this application's functionality may be viewed [here](https://youtu.be/tG4f4FSWgFE).
 
 ## Table of Contents
 - [Description](#description)
@@ -18,15 +18,23 @@ A video illustrating this application's functionality may be viewed [here]().
 - [License](#license)
 
 ## Screenshots 
-![Screenshot 1]([./Examples/Screenshots/screenshotSVG2])
+![SVG Screenshot 1](https://raw.githubusercontent.com/Pilotguide9897/BrandRecognitionAssistant/main/Examples/Screenshots/ScreenshotSVG.png)
 
-![Screenshot 2]([image URL])
-![Screenshot 1]([image URL])
-![Screenshot 1]([image URL])
-![Screenshot 1]([image URL])
-![Screenshot 1]([image URL])
-![Screenshot 1]([image URL])
-![Screenshot 1]([image URL])
+![SVG Code 1](https://raw.githubusercontent.com/Pilotguide9897/BrandRecognitionAssistant/main/Examples/Screenshots/ScreenshotCode.png)
+
+![SVG Screenshot 2](https://raw.githubusercontent.com/Pilotguide9897/BrandRecognitionAssistant/main/Examples/Screenshots/ScreenshotSVG2.png)
+
+![SVG Code 2](https://raw.githubusercontent.com/Pilotguide9897/BrandRecognitionAssistant/main/Examples/Screenshots/Screenshot%20Code%202.png)
+
+![Partial Answers 1](https://raw.githubusercontent.com/Pilotguide9897/BrandRecognitionAssistant/main/Examples/Screenshots/ScreenshotAnswer1.png)
+
+![Partial Answers 2](https://raw.githubusercontent.com/Pilotguide9897/BrandRecognitionAssistant/main/Examples/Screenshots/ScreenshotAnswer2.png)
+
+![Partial Answers 3](https://raw.githubusercontent.com/Pilotguide9897/BrandRecognitionAssistant/main/Examples/Screenshots/ScreenshotAnswer3.png)
+
+![Partial Answers 4](https://raw.githubusercontent.com/Pilotguide9897/BrandRecognitionAssistant/main/Examples/Screenshots/ScreenshotAnswer4.png)
+
+![Screenshot Full Answers](https://raw.githubusercontent.com/Pilotguide9897/BrandRecognitionAssistant/main/Examples/Screenshots/ScreenshotAnswers.png)
 
 ## Installation
 To install this application, clone the repository to your local machine. You can do this by running the following command in your terminal: 'git clone <repository-url>. The repo url can be achieved by clicking the green code button in the main repo page, clicking the SSH tab, and then copying the URL provided. Once the repo is cloned to the local system, navigate to the directory in the terminal until index.js is located. Index.js is the main file for this application. This application requires that users already have node.js and Node Package Manager (NPM) installed. For more information on installing these technologies please consult their official documentation. 
