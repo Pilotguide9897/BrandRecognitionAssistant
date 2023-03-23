@@ -18,6 +18,14 @@ A video illustrating this application's functionality may be viewed [here]().
 - [License](#license)
 
 ## Screenshots 
+![Screenshot 1]([./Examples/Screenshots/screenshotSVG2])
+
+![Screenshot 2]([image URL])
+![Screenshot 1]([image URL])
+![Screenshot 1]([image URL])
+![Screenshot 1]([image URL])
+![Screenshot 1]([image URL])
+![Screenshot 1]([image URL])
 ![Screenshot 1]([image URL])
 
 ## Installation

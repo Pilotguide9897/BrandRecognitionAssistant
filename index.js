@@ -1,7 +1,9 @@
 import('inquirer').then(({ default: inquirer }) => {
 async function main () {
   const fs = require('fs').promises;
+  const path = require('path');
   const colours = require('./Library/Colours/colours');
+  const fileName = require('./filename.js');
   const Triangle = require('./Library/Shapes/triangle');
   const Circle = require('./Library/Shapes/circle');
   const Square = require('./Library/Shapes/square');
@@ -130,7 +132,8 @@ const questions = [
       console.log(svgLogo);
 
         try {
-          await fs.writeFile("./Examples/logo.svg", svgLogo);
+          const filePath = await fileName.logoIdentifier();
+          await fs.writeFile(filePath, svgLogo);
           console.log('Generated logo.svg');
         } catch {
           console.error('Unable to write logo', error);
