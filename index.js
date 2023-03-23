@@ -107,7 +107,7 @@ const questions = [
       },
     },
   ];
-  
+
   inquirer.prompt(questions) // Something is going on here that stops any shape but the square from being selected.
     .then(answers => {
       const {logoChars, fontFamily, fontSize, fontWeight, lineStyling, textColour, logoShape, shapeColour} = answers;
@@ -145,4 +145,7 @@ main();
 
 });
 
+module.exports = {
+  main
+};
 
