@@ -9,22 +9,6 @@ async function main () {
   const Square = require('./Library/Shapes/square');
   const { error } = require('console');
 
-  const inquirerAutocompletePrompt = (await import('inquirer-autocomplete-prompt')).default;
-  // inquirer.registerPrompt('autocomplete', inquirerAutocompletePrompt); // For some reason this code halts the execution of the rest of my prompts...
-
-const searchColours = (input, colours) => {
-  input = input || '';
-  const colourList = Object.keys(colours);
-  console.log(colourList);
-
-  return new Promise ((resolve) => {
-    const filteredColors = colourList.filter((color) => {
-      return color.toLowerCase().indexOf(input.toLowerCase()) !== -1;
-    });
-    resolve(filteredColors.length > 0 ? filteredColors : ['No matching colors found']);
-  });
-};
-
 const questions = [    
     {
         type: 'input',
@@ -108,7 +92,7 @@ const questions = [
     },
   ];
 
-  inquirer.prompt(questions) // Something is going on here that stops any shape but the square from being selected.
+  inquirer.prompt(questions)
     .then(answers => {
       const {logoChars, fontFamily, fontSize, fontWeight, lineStyling, textColour, logoShape, shapeColour} = answers;
       console.log (logoChars, textColour, logoShape, shapeColour);
