@@ -9,22 +9,6 @@ async function main () {
   const Square = require('./Library/Shapes/square');
   const { error } = require('console');
 
-  const inquirerAutocompletePrompt = (await import('inquirer-autocomplete-prompt')).default;
-  // inquirer.registerPrompt('autocomplete', inquirerAutocompletePrompt); // For some reason this code halts the execution of the rest of my prompts...
-
-const searchColours = (input, colours) => {
-  input = input || '';
-  const colourList = Object.keys(colours);
-  console.log(colourList);
-
-  return new Promise ((resolve) => {
-    const filteredColors = colourList.filter((color) => {
-      return color.toLowerCase().indexOf(input.toLowerCase()) !== -1;
-    });
-    resolve(filteredColors.length > 0 ? filteredColors : ['No matching colors found']);
-  });
-};
-
 const questions = [    
     {
         type: 'input',
@@ -107,8 +91,8 @@ const questions = [
       },
     },
   ];
-  
-  inquirer.prompt(questions) // Something is going on here that stops any shape but the square from being selected.
+
+  inquirer.prompt(questions)
     .then(answers => {
       const {logoChars, fontFamily, fontSize, fontWeight, lineStyling, textColour, logoShape, shapeColour} = answers;
       console.log (logoChars, textColour, logoShape, shapeColour);
@@ -123,9 +107,23 @@ const questions = [
     });
 
    async function generateLogo(logoChars, fontSize, fontFamily, fontWeight, lineStyling, textColour, chosenShape){
-      const svgHeader = `<?xml version="1.0" encoding="UTF-8"?> <svg width="300" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">`;
+      const svgHeader = `<?xml version="1.0" encoding="UTF-8"?> <svg width="300px" height="200px" version="1.1" xmlns="http://www.w3.org/2000/svg">`;
+
+      // To try to help vertically align the text regardless of font size.
+      // let dy;
+      // switch (chosenShape){
+      //     case 'square':
+      //       dy = 0.60;
+      //       break;
+      //     case 'triangle':
+      //       dy = 0.85;
+      //       break;
+      //     default:
+      //       dy = 0.20;
+      //   }
+
       const svgFooter = `</svg>`;
-      const svgText = `<text x="50%" y="50%" dy="0.20em" font-size="${fontSize}"; font-family="${fontFamily}" style="text-decoration: ${lineStyling}" font-weight="${fontWeight}" text-anchor="middle" fill="${textColour}">${logoChars}</text>`;
+      const svgText = `<text x="50%" y="50%" dy="0.35em" dominant-baseline = "middle" font-size="${fontSize}"; font-family="${fontFamily}" style="text-decoration: ${lineStyling}" font-weight="${fontWeight}" text-anchor="middle" fill="${textColour}">${logoChars}</text>`;
       const shapeSvg = chosenShape.render();
       const svgLogo = `${svgHeader}${shapeSvg}${svgText}${svgFooter}`;
 
